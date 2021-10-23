@@ -1,0 +1,141 @@
+
+@charset "UTF-8";
+/* @import url("../css/reset.css"); */
+/* @import url("bootstrap/bootstrap.css"); */
+/* bootstrap/bootstrap.min.css */
+
+
+body{
+  background: url("../img/backgrounds/wooden_planks.jpg") no-repeat center top; 
+  /* background: url("../img/coffeecup3.jpg") no-repeat center top;  */
+  position: relative;
+  background-size: cover;
+  
+}
+
+div{
+  border: 1px dashed white;
+  /* margin: 1px; */
+
+}
+img{
+  max-width: 100%;
+} 
+
+section {
+    -webkit-box-sizing: border-box;
+            box-sizing: border-box;
+    border: 1px solid rgba(36, 6, 94, 0.8);
+    background-color: rgba(245, 244, 247, 0.1);
+    
+    /* max-width: 1350px;  */
+    margin: auto; 
+    position: relative;
+    
+     /* margin: 5px 1.5%;  */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* float: center; */
+
+    
+  }
+
+
+ /*  
+  aside {
+    float: right;
+    margin: 0 1.5%;
+    width: 18%;
+    border: 1px solid rgba(36, 6, 94, 0.5);
+    background-color: rgba(245, 244, 247, 0.2);
+  }
+ */
+
+  .mainsection {
+    height: 95vh;
+    /* background: url("../img/coffeecup3.jpg") no-repeat center top;  */
+    /* background-size:contain;  */
+    background-size: cover;
+    background-repeat:no-repeat;
+    background-position: center center;
+    /* background-attachment: fixed; */
+  }
+  
+  
+  .promo {
+    position: relative;
+     background: url("../img/coffeecup3.jpg") no-repeat center ; 
+    background-size: contain ;
+  }
+
+  .header{
+
+    
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid rgba(6, 94, 13, 0.5);
+    background-color: rgba(193, 199, 193, 0.5);
+     /* background: url("../img/sectionback.png") no-repeat center top; */
+    /* max-width: 800px; */
+    /* margin: auto; */
+    position: sticky;
+    
+    top: 10px; 
+  
+    z-index: 500; 
+    visibility: hidden;
+    display: none;
+  }
+
+  .footer{
+    /* -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    border: 1px solid rgba(6, 94, 13, 0.5);
+    background-color: rgba(193, 199, 193, 0.5);
+    position: bottom;
+ */
+   position:absolute;
+   bottom:0;
+   width:100%;
+   height:70px;   /* Высота блока "footer" */
+
+  }
+
+
+
+.mainblock{
+  margin: 0;
+  background: yellow;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  margin-right: -50%;
+  transform: translate(-50%, -50%)
+}
+
+
+  .goods{
+    height: 95vh;
+
+  }
+
+  .goodsTitle{
+    height: 20%;
+    box-shadow: gray;
+    background-color: rgba(240, 247, 240, 0.3);
+
+    border-radius: 25px;
+    margin: 1%;
+  }
+
+  .logo {
+    height: 30px;
+    /* width: 50px; */
+    float: left;
+  }
+  
+  .logo .logo_img {
+    margin: 0 auto;
+    display: inline-block;
+    width: 100%;
+  }
