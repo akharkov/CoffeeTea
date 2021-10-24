@@ -4,6 +4,7 @@
 /* @import url("bootstrap/bootstrap.css"); */
 /* bootstrap/bootstrap.min.css */
 
+@import url("../css/goods.css"); 
 
 body{
   background: url("../img/backgrounds/wooden_planks.jpg") no-repeat center top; 
@@ -114,19 +115,10 @@ section {
 }
 
 
-  .goods{
-    height: 95vh;
+  
 
-  }
 
-  .goodsTitle{
-    height: 20%;
-    box-shadow: gray;
-    background-color: rgba(240, 247, 240, 0.3);
 
-    border-radius: 25px;
-    margin: 1%;
-  }
 
   .logo {
     height: 30px;
