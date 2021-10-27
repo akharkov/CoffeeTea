@@ -65,7 +65,7 @@ section {
   
   .promo {
     position: relative;
-     background: url("../img/coffeecup3.jpg") no-repeat center ; 
+     background: url("../img/coffeecup3.jpg") no-repeat center top; 
     background-size: contain ;
   }
 

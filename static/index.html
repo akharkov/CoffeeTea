@@ -30,15 +30,14 @@
 
         </div> -->
         <div class="row container-fluid " style="height:100%">
-            <div class="col col-11 ">
+            <div class="col col-10 ">
                 <div class="mainblock">
                     Этот мир не так уж плох, пока в нем есть кофе....
                 </div>
                 
             </div>
-            <div class="col col-1 d-none d-lg-block">
-                Здесь будет лента новостей
-
+            <div id="newsFeed" class="col col-2 d-none d-lg-block">
+                <p>{{ mess }}</p>
             </div>
         </div>
         
@@ -103,7 +102,7 @@
 
     <script src="https://unpkg.com/vue"></script>
 
-
+    <script src="./js/newsfeed.js"></script>
 
 
 </body>
