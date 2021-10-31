@@ -131,3 +131,17 @@ section {
     display: inline-block;
     width: 100%;
   }
+
+  .news_feed{
+    border: 1px solid rgba(6, 94, 13, 0.5);
+    background-color: rgba(193, 199, 193, 0.5);
+     /* background: url("../img/sectionback.png") no-repeat center top; */
+    /* max-width: 800px; */
+    /* margin: auto; */
+    position: sticky;
+    
+    top: 10px; 
+  
+    
+
+  }

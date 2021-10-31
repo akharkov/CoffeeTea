@@ -36,9 +36,23 @@
                 </div>
                 
             </div>
-            <div id="newsFeed" class="col col-2 d-none d-lg-block">
-                <p>{{ mess }}</p>
+       
+            <div id="newsFeed" class="col col-2 d-none d-lg-block news_feed" style="max-height: 90%; text-overflow: clip;">
+                <div v-for="newsIten in news" style="max-height: 30%; overflow:hidden;"> 
+                    
+                    
+                        <h2>{{newsIten.news_title}}</h2>
+                        
+                        {{newsIten.news_note }}
+                        
+                        
+                    
+                </div> 
+                
             </div>
+
+            
+            
         </div>
         
     </section>
