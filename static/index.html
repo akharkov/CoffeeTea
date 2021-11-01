@@ -37,13 +37,14 @@
                 
             </div>
        
-            <div id="newsFeed" class="col col-2 d-none d-lg-block news_feed" style="max-height: 90%; text-overflow: clip;">
-                <div v-for="newsIten in news" style="max-height: 30%; overflow:hidden;"> 
+            <div id="newsFeed" class="col col-2 d-none d-lg-block news_feed" style="max-height: 90%; text-overflow: clip;" >
+                <div v-for="newsItem in news" style="max-height: 30%; overflow:hidden; text-overflow: ellipsis;"> 
                     
                     
-                        <h2>{{newsIten.news_title}}</h2>
+                        <h2 @click="divNewsClick(newsItem.news_note)">{{newsItem.news_title}}</h2>
                         
-                        {{newsIten.news_note }}
+                         {{newsItem.news_note }}
+                         
                         
                         
                     

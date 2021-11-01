@@ -20,9 +20,13 @@ var appVue_NewsFeed = new Vue({
                 news_expired:false
             }
              
-    ]
+        ]
+    },
+    methods:{
+       
+        divNewsClick: function(newsNote) {
+            alert(newsNote );
+        }
     }
-
-}
-
+ }
 );
