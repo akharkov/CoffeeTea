@@ -7,20 +7,17 @@
 
         </div>
 
-        <div class="goodsBody"> 
-        <div class="row ">
+   
+        
+
+        <div class="row goodsBody">
             <product_card v-for="Item in products" :key="Item.id" :Item="Item" > 
 
 
             </product_card>
-                     
+                    
 
         </div>
-    </div>   
-       
-        
-
-
 
 
 
@@ -38,7 +35,7 @@
         components: {product_card
         },
         created() {
-            for (let i = 0; i < 9; i++) { 
+            for (let i = 0; i < 50; i++) { 
                 // выведет 0, затем 1, затем 2
                 this.products.push({
                     cardId:i,

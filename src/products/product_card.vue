@@ -5,10 +5,7 @@
             <div id="mainCardDiv" class="col-12 col-sm-12 col-md-4 col-lg-3 col-xl-2">
                 <div class="row">
                     <div id="cardLogo" class="col-3" :style="{'background-image':'url('+Item.productPic+')'}"  >
-                         <!-- background: url("../img/coffee/coffee1.jpg") no-repeat center top; --> 
-                        
-                        <!-- <img :src="Item.productPic"  alt="VUE">  -->
-                        <!-- <img src="../img/coffee/coffee1.jpg"  >  -->
+                         
                     </div>
                     <div id=CardTitle class="col-9"> 
                         {{Item.productProp}}
