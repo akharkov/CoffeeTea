@@ -5,6 +5,57 @@
 /* bootstrap/bootstrap.min.css */
 
 @import url("../css/goods.css"); 
+@import url("https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css");
+@import url("https://fonts.googleapis.com/css2?family=Pacifico&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+
+h2 {
+  width: 100%;
+  height: 140px;
+  text-align: center;
+  font: bold 72px Lobster, Arial, sans-serif;
+  color: #f7f2f2;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+  letter-spacing: 20px;
+  word-spacing: 15px;
+}
+
+h3 {
+  width: 100%;
+  height: 70px;
+  text-align: center;
+  font: bold 40px Lobster, Arial, sans-serif;
+  color: #d8d5d5;
+  text-shadow: 0 1px 0 #ccc, 0 2px 0 #c9c9c9, 0 3px 0 #bbb, 0 4px 0 #b9b9b9, 0 5px 0 #aaa, 0 6px 1px rgba(0, 0, 0, 0.1), 0 0 5px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.3), 0 3px 5px rgba(0, 0, 0, 0.2), 0 5px 10px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.2), 0 20px 20px rgba(0, 0, 0, 0.15);
+  letter-spacing: 20px;
+  word-spacing: 15px;
+}
+
+h4 {
+  width: 100%;
+  height: 25px;
+  text-align: left;
+  font: bold 20px Arial, sans-serif;
+  color: #24055e;
+  letter-spacing: 10px;
+  word-spacing: 5px;
+}
+
+section {
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  border: 1px solid rgba(36, 6, 94, 0.5);
+  background-color: rgba(0, 0, 0, 0.1);
+  /* background: url("../img/sectionback.png") no-repeat center top; */
+  max-width: 800px;
+  margin: auto;
+  position: relative;
+}
+
+
+
+
+
 
 body{
   background: url("../img/backgrounds/wooden_planks.jpg") no-repeat center top; 
@@ -23,34 +74,8 @@ img{
   max-width: 100%;
 } 
 
-section {
-    -webkit-box-sizing: border-box;
-            box-sizing: border-box;
-    border: 1px solid rgba(36, 6, 94, 0.8);
-    background-color: rgba(245, 244, 247, 0.1);
-    
-    /* max-width: 1350px;  */
-    margin: auto; 
-    position: relative;
-    
-     /* margin: 5px 1.5%;  */
-    /* width: 100%; */
-    /* height: 100%; */
-    /* float: center; */
-
-    
-  }
 
 
- /*  
-  aside {
-    float: right;
-    margin: 0 1.5%;
-    width: 18%;
-    border: 1px solid rgba(36, 6, 94, 0.5);
-    background-color: rgba(245, 244, 247, 0.2);
-  }
- */
 
   .mainsection {
     height: 95vh;
@@ -103,19 +128,6 @@ section {
   }
 
 
-
-.mainblock{
-  margin: 0;
-  background: yellow;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin-right: -50%;
-  transform: translate(-50%, -50%)
-}
-
-
-  
 
 
 
