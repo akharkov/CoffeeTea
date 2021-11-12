@@ -1,12 +1,12 @@
 <template>
 
-    <div id="mainCardDiv" class="goods col-12 col-sm-12 col-md-6 col-lg-3 col-xl-2">
+    <div id="mainCardDiv" class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-2">
 
         <div id="coffee-rangeofgoods01" class="col-12 rangeofgoods">
             
-            <div class=" goods_head">
+            <div class="row goods_head">
 
-                <div class="good_pic col-3" :style="{'background-image':'url('+Item.productPic+')'}">
+                <div class="good_pic col-3" :style="{'background-image':'url('+Item.productPic+') '}">
                     
                 </div>
 
@@ -18,7 +18,13 @@
             </div>
             
             <div class="row good_info">
+            
                     {{productProp}}
+                Lorem ipsum dolor sit,
+                amet consectetur adipisicing elit.
+                Corrupti nemo eaque totam eos,
+                dignissimos sint molestias ullam a
+                consequatur officiis illo nisi quae eum
                 Lorem ipsum dolor sit,
                 amet consectetur adipisicing elit.
                 Corrupti nemo eaque totam eos,
@@ -73,6 +79,10 @@ export default {
 </script>
 
 <style scoped>
+h5{
+    text-overflow: ellipsis;
+        overflow: hidden;
+}
 
         #mainCardDiv{
             margin: 3px;
@@ -101,7 +111,7 @@ export default {
         .rangeofgoods {
             
             display: block;
-            margin: 0.5%;
+            margin: 0.5% ;
 
             /* height: 250px; */
             width: auto;
@@ -111,7 +121,7 @@ export default {
             background-color: rgba(226, 220, 220, 0.8);
             -webkit-box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.5);
                     box-shadow: 0 10px 10px 5px rgba(0, 0, 0, 0.5);
-            float: left;
+            /* float: left; */
             
             padding: 1%;
         }
@@ -121,23 +131,27 @@ export default {
         }
 
         .rangeofgoods .goods_head {
-        padding: 5px;
+        padding: 1px;
         display: -webkit-box;
         display: -ms-flexbox;
         display: flex;
-        height: 10%;
+        margin: 1%;
+        height: 20%;
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
-                justify-content: space-between;
-        -ms-flex-line-pack: justify;
-            align-content: space-between;
+        /* justify-content: space-between;
+            -ms-flex-line-pack: justify; */
+            /* align-content: space-between; */
         /** align-items: center  **/
         }
 
         .rangeofgoods .goods_head .good_pic {
-        width: 30%;
+        /* width: 30%; */
         border-radius: 5px;
-        background-size: cover;
+        /* background-size: cover; */
+        background-size: contain;
+        background-repeat: no-repeat;
+
         }
 
         .rangeofgoods .goods_head .good_pic .good_pic_logo {
@@ -147,7 +161,7 @@ export default {
         }
 
         .rangeofgoods .goods_head .good_title {
-        width: 60%;
+       /*  width: 60%; */
         border-radius: 5px;
         /** float: right **/
         }
@@ -155,16 +169,21 @@ export default {
         .rangeofgoods .good_info {
         display: block;
         /** width: 100%  **/
-        height: 50%;
+        height: 60%;
         margin: 5px;
         border-radius: 5px;
         padding: 3px;
+/* overflow: hidden; */
+/* white-space: nowrap; */
+
         /** float: left **/
         /** justify-content: space-between **/
+
+        
         }
 
         .rangeofgoods .good_botton {
-        padding: 5px 15px;
+        padding: 1px 15px;
         color: #1b1b1b;
         border-radius: 5px;
         border: 2px solid #666;

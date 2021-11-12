@@ -10,7 +10,7 @@
    
         
 
-        <div class="row goodsBody">
+        <div class="row justify-content-around goodsBody">
             <product_card v-for="Item in products" :key="Item.id" :Item="Item" > 
 
 
@@ -62,5 +62,30 @@
 </script>
 
 <style scoped>
+
+.goods{
+    height: 95vh;
+
+  }
+
+  .goodsTitle{
+    height: 20%;
+    box-shadow: gray;
+    background-color: rgba(240, 247, 240, 0.3);
+
+    border-radius: 25px;
+    margin: 1%;
+  }
+  .goodsBody{
+    height: 75%;
+    box-shadow: gray;
+    background-color: rgba(240, 247, 240, 0.3);
+
+    border-radius: 25px;
+    margin: 1%;
+    overflow-y: scroll;
+  }
+
+
 
 </style>
