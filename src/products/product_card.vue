@@ -1,6 +1,6 @@
 <template>
 
-    <div id="mainCardDiv" class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-2">
+    <div id="mainCardDiv" class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-2 ">
 
         <div id="coffee-rangeofgoods01" class="col-12 rangeofgoods">
             
@@ -11,6 +11,7 @@
                 </div>
 
                 <div id=CardTitle class="good_title col-9"> 
+                    
                     {{Item.productProp}}
                 </div>
 
@@ -19,17 +20,9 @@
             
             <div class="row good_info">
             
-                    {{productProp}}
-                Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit.
-                Corrupti nemo eaque totam eos,
-                dignissimos sint molestias ullam a
-                consequatur officiis illo nisi quae eum
-                Lorem ipsum dolor sit,
-                amet consectetur adipisicing elit.
-                Corrupti nemo eaque totam eos,
-                dignissimos sint molestias ullam a
-                consequatur officiis illo nisi quae eum
+                    {{productProp | truncate(30, '...')}}
+                
+                
 
             </div>
 
@@ -65,12 +58,29 @@ export default {
             productId:"",
             productTitle:"", 
             productPic:"",            
-            productProp:"Jочень вкусный",
+            productProp:"Ну очень вкусный "
+                +"Lorem ipsum dolor sit,"
+                +"amet consectetur adipisicing elit."
+                +"Corrupti nemo eaque totam eos,"
+                +"dignissimos sint molestias ullam a"
+                +"consequatur officiis illo nisi quae eum",
             productCost:0.00,
             productEnable:true,
             productPromo:false 
 
         }
+    },
+    created(){
+
+    },
+    filters: {
+        truncate: function (text, length, suffix) {
+            if (text.length > length) {
+                return text.substring(0, length) + suffix;
+            } else {
+                return text;
+            }
+        },
     }
     
     
@@ -193,5 +203,13 @@ h5{
         right: 5%;
         bottom: 5%;
         }    
+
+
+
+#mainCardDiv{
+    max-height:40%;
+    margin-top: 2%;
+}
+
 
 </style>
