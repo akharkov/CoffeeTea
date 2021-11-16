@@ -90,7 +90,9 @@ img{
   
   .promo {
     position: relative;
-     background: url("../img/coffeecup3.jpg") no-repeat center top; 
+    background: url("../img/coffeecup3.jpg") no-repeat center top;  
+     /*background: url("../img/coffee/bgpromo3.jpg") no-repeat center top; */
+
     background-size: contain ;
   }
 

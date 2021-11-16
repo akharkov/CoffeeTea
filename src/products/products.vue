@@ -35,7 +35,7 @@
         components: {product_card
         },
         created() {
-            for (let i = 0; i < 50; i++) { 
+            for (let i = 0; i < 30; i++) { 
                 // выведет 0, затем 1, затем 2
                 this.products.push({
                     cardId:i,

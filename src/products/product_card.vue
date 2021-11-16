@@ -1,6 +1,6 @@
 <template>
 
-    <div id="mainCardDiv" class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-2 ">
+    <div id="main-CardDiv" class=" col-12 col-sm-12 col-md-6 col-lg-4 col-xl-2 " :style="cardStyle" ref="mainCardDiv" >
 
         <div id="coffee-rangeofgoods01" class="col-12 rangeofgoods">
             
@@ -10,8 +10,9 @@
                     
                 </div>
 
-                <div id=CardTitle class="good_title col-9"> 
-                    
+                <div id=CardTitle class="col-9 good_title  " > 
+                    {{cardStyle.height}}
+                    {{clickCount}}
                     {{Item.productProp}}
                 </div>
 
@@ -20,13 +21,13 @@
             
             <div class="row good_info">
             
-                    {{productProp | truncate(30, '...')}}
+                    {{cardData.productProp | truncate(30, '...')}}
                 
                 
 
             </div>
 
-            <button class="good_botton">Подробнее</button>
+            <button v-on:click ="bClick"  class="good_botton">Подробнее</button>
 
         </div>
 
@@ -53,20 +54,24 @@ export default {
     data: function( ){
     
         return{
-             cardId:"",
-            productType:"",
-            productId:"",
-            productTitle:"", 
-            productPic:"",            
-            productProp:"Ну очень вкусный "
-                +"Lorem ipsum dolor sit,"
-                +"amet consectetur adipisicing elit."
-                +"Corrupti nemo eaque totam eos,"
-                +"dignissimos sint molestias ullam a"
-                +"consequatur officiis illo nisi quae eum",
-            productCost:0.00,
-            productEnable:true,
-            productPromo:false 
+            cardStyle:{},
+            clickCount:0,
+            cardData:{
+                cardId:"",
+                productType:"",
+                productId:"",
+                productTitle:"", 
+                productPic:"",            
+                productProp:"Ну очень вкусный "
+                    +"Lorem ipsum dolor sit,"
+                    +"amet consectetur adipisicing elit."
+                    +"Corrupti nemo eaque totam eos,"
+                    +"dignissimos sint molestias ullam a"
+                    +"consequatur officiis illo nisi quae eum",
+                productCost:0.00,
+                productEnable:true,
+                productPromo:false 
+            }
 
         }
     },
@@ -81,6 +86,33 @@ export default {
                 return text;
             }
         },
+    },
+    computed:{
+        card_Style(){
+            return this.cardStyle;
+        }  //сюда положим вычисляемые стили карты продукта
+
+    },
+    methods: {
+        bClick: function(){
+            this.clickCount++;
+            matchHeight();
+
+
+        },
+        matchHeight() {
+            var heightString = this.$refs.mainCardDiv.clientWidth + 'px';
+            this.cardStyle.height= heightString; 
+            console.log(this.cardStyle.height);
+        },
+       updateHeigth: function(){
+           this.matchHeight();;
+       } 
+    },
+    mounted() {
+        console.log(this);
+        this.matchHeight();
+        
     }
     
     
@@ -89,33 +121,26 @@ export default {
 </script>
 
 <style scoped>
-h5{
-    text-overflow: ellipsis;
-        overflow: hidden;
-}
 
-        #mainCardDiv{
+
+        #main-CardDiv{
             margin: 3px;
             border-radius: 10px;
             background-color: rgba(100,200, 200, 0.5);
             box-shadow: gray;
+            
+           /*  max-height:40%; */
+            margin-top: 2%;
+
+
         }
 
-        #cardLogo{
-            
-            /* background: url("../img/coffee/coffee1.jpg") no-repeat center top; */
-            height: 50px;
-            width: 50px; 
         
-            margin: 3%;
-            background-size: cover;
-            border-radius: 20%;
-        }
 
         img {
         min-width: 100%;
             
-            }
+        }
 
 
         .rangeofgoods {
@@ -147,6 +172,8 @@ h5{
         display: flex;
         margin: 1%;
         height: 20%;
+        background-color: rgba(177, 171, 171, 0.5);
+        position: relative;
         -webkit-box-pack: justify;
             -ms-flex-pack: justify;
         /* justify-content: space-between;
@@ -155,12 +182,23 @@ h5{
         /** align-items: center  **/
         }
 
+#cardLogo{
+            
+            /* background: url("../img/coffee/coffee1.jpg") no-repeat center top; */
+            height: 50px;
+            width: 50px; 
+        
+            margin: 3%;
+            background-size: contain;
+            border-radius: 20%;
+        }
+        
         .rangeofgoods .goods_head .good_pic {
-        /* width: 30%; */
-        border-radius: 5px;
+            border-radius: 5px;
         /* background-size: cover; */
-        background-size: contain;
-        background-repeat: no-repeat;
+            background-size: contain;
+            background-repeat: no-repeat;
+            max-height: 100%;
 
         }
 
@@ -172,8 +210,11 @@ h5{
 
         .rangeofgoods .goods_head .good_title {
        /*  width: 60%; */
-        border-radius: 5px;
-        /** float: right **/
+            border-radius: 5px;
+            max-height: 100%;
+            font-size: 80%;
+
+
         }
 
         .rangeofgoods .good_info {
@@ -183,11 +224,13 @@ h5{
         margin: 5px;
         border-radius: 5px;
         padding: 3px;
-/* overflow: hidden; */
-/* white-space: nowrap; */
+        font-size: 80%;
 
-        /** float: left **/
-        /** justify-content: space-between **/
+
+        /* overflow: hidden; */
+        /* white-space: nowrap; */
+        /* float: left */
+        /* justify-content: space-between */
 
         
         }
@@ -206,10 +249,6 @@ h5{
 
 
 
-#mainCardDiv{
-    max-height:40%;
-    margin-top: 2%;
-}
 
 
 </style>
