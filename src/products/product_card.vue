@@ -32,19 +32,7 @@
         </div>
 
     </div>
-
-
-    
-
-
-
-
-
-
-
-
-
-            
+ 
 </template>
 
 <script>
@@ -89,28 +77,30 @@ export default {
     },
     computed:{
         card_Style(){
-            return this.cardStyle;
+        this.matchHeight();
+        return this.cardStyle;
         }  //сюда положим вычисляемые стили карты продукта
 
     },
     methods: {
         bClick: function(){
             this.clickCount++;
-            matchHeight();
+            this.matchHeight();
 
 
         },
         matchHeight() {
             var heightString = this.$refs.mainCardDiv.clientWidth + 'px';
+
+//vue.$set(this,cardStyle.height,heightString);
             this.cardStyle.height= heightString; 
-            console.log(this.cardStyle.height);
+            return this.cardStyle;
         },
        updateHeigth: function(){
            this.matchHeight();;
        } 
     },
     mounted() {
-        console.log(this);
         this.matchHeight();
         
     }
