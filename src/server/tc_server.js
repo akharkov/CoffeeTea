@@ -29,6 +29,7 @@ const { MongoClient } = require("mongodb");
 
 const mongoose = require('mongoose');
 const { errorMonitor } = require('events');
+const { Console } = require('console');
 const { Schema } = mongoose;
 
 const dataBaseName = 'coffee_and_tea';
@@ -48,16 +49,40 @@ const uri =  `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism
 
 // mongoose Schemas Documents
 
-const schemaCoffeeCard = new mongoose.Schema({
+
+const schemaProductType = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  productType: String,  //код типа продукта
+  productName: String,
+  productTypeEnable: Boolean,
+  productTypeDateCreated: {
+      type: Date,
+      default: Date.now}
+  },
+  {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+    }
+  }  // этот объект исключил ошибку MongoWriteConcernError: No write concern mode named 'majority/' found in replica set configuration at MessageStream.messageHandler
+
+
+);
+
+const schemaProductCard = new mongoose.Schema({
     _id: mongoose.Schema.Types.ObjectId,
-    coffeeName: String,
-    coffeeRegion: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: 'Region'
-    },
-    detail: String,
-    pic: String,
-    created: {
+    productType: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: 'productType'
+    },  //код типа продукта из справочника
+    productName: String, //название продукта
+    productProp: String,  // свойства продукта
+    pic: String,  //ссылка на файл изображения
+    productCost: Number, //цена
+    productEnable: Boolean,
+    productPromo: Boolean,
+    productDateCreated: {
         type: Date,
         default: Date.now}
     },
@@ -72,7 +97,11 @@ const schemaCoffeeCard = new mongoose.Schema({
 
 );
 
-const CoffeeCard = mongoose.model('CoffeeCard', schemaCoffeeCard, 'coffee');
+
+
+const productType = mongoose.model('productType', schemaProductType);
+const ProductCards = mongoose.model('productCards', schemaProductCard);
+
 
 // Function to connect to the server
 async function run() {
@@ -143,7 +172,7 @@ app.get("/--", function(req, res)  {
       console.log("Данные отправленны",tasks);
     }) */
 
-  get2minus(CoffeeCard, res);
+  get2minus(ProductCards, res);
 
 
 });
@@ -183,9 +212,9 @@ async function get2minus(collect, res){
  
 let docCount;
     
-       await CoffeeCard.find({}).exec(function(err, CoffeeCards) {
+       await ProductCards.find({}).exec(function(err, ProductCardss) {
        
-            CoffeeCard.estimatedDocumentCount(function (err, count) {
+            ProductCards.estimatedDocumentCount(function (err, count) {
         
             if (err){
                 console.log(err)
@@ -193,6 +222,31 @@ let docCount;
 
                 docCount = count;
                 console.log("Estimated Count docCount= :", docCount);
+
+if (docCount===0) {
+  console.log('fff');
+  
+  let prodType = new productType( {
+    _id: new mongoose.Types.ObjectId(),
+    productType: '0000000001',
+    productName: 'Кофе',
+    productTypeEnable: 0
+
+  });
+
+  prodType.save()
+.then(function(doc){
+    console.log("Сохранен объект", doc);
+    
+})
+.catch(function (err){
+    console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
+    
+});
+
+}
+
+
  /*                
                 Book.find({
                   title: /mvc/i
@@ -213,8 +267,8 @@ let docCount;
                       created:   new Date()
    */
 
-                  CoffeeCard.find({
-                    coffeeName: /кофе/i
+                  ProductCards.find({
+                    productName: /кофе/i
                   }).limit(10)
                   .exec( function (err, small) {
                       if (err){
@@ -225,7 +279,7 @@ let docCount;
                        
                         res.status(200).send(small); //json
                         console.log("Данные отправленны",small);
-                        //CoffeeCard.collection.drop();
+                        //ProductCards.collection.drop();
 
                       }  
                     });
@@ -241,7 +295,7 @@ let docCount;
   
    
   
-          //console.log(CoffeeCards);
+          //console.log(ProductCardss);
       });
   
   
