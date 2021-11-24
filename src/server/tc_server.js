@@ -99,9 +99,25 @@ const schemaProductCard = new mongoose.Schema({
 
 
 
-const productType = mongoose.model('productType', schemaProductType);
+const productType = mongoose.model('productType', schemaProductType); 
 const ProductCards = mongoose.model('productCards', schemaProductCard);
+/* 
+Первый параметр в методе mongoose.model указывает на название модели. 
+Mongoose затем будет автоматически искать в базе данных коллекцию, 
+название которой соответствует названию модели во множественном числе. 
+Например, в данном случае название модели "User". 
+Во множественном числе в соответствии с правилами английского языка это "users". 
+Поэтому при работе с данными модели User 
+(добавлении, удалении, редактировании и получении объектов) mongoose будет обращаться
+к коллекции "users". Если такая коллекция есть в бд, то с ней будет идти взаимодействие. 
+Если такой коллекции в базе данных нет, то она будет создана автоматически.
 
+https://metanit.com/web/nodejs/6.6.php
+
+Второй параметр функции mongoose.model - собственно схема.
+
+
+*/
 
 // Function to connect to the server
 async function run() {
