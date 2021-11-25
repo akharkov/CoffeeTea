@@ -194,6 +194,11 @@ app.get("/--", function(req, res)  {
 });
 
 
+app.get("/----", function(req, res)  {
+  get2plus(ProductCards, res);
+});
+ 
+
 
 
 
@@ -222,87 +227,73 @@ app.listen(4000);
 
 
 
-async function get2minus(collect, res){
+async function get2plus(collect, res){
 
-
- 
-let docCount;
+let docCount=0;
     
-       await ProductCards.find({}).exec(function(err, ProductCardss) {
-       
-            ProductCards.estimatedDocumentCount(function (err, count) {
-        
+await ProductCards.find({})
+  .exec(function(err, Product_Cards) {
+
+console.log('ProductCards==',Product_Cards);
+console.log('ProductCards.length==',Product_Cards.length  );
+console.log('ProductCards.typeof==',Product_Cards.countDocuments );
+//
+    //ProductCards.estimatedDocumentCount(function (err, count) {
+
+      if (err){
+          console.log(err)
+      }else{
+
+        docCount = 0; //count;
+        console.log("Estimated Count docCount= :", docCount); 
+
+        if (docCount===0) {
+          let prodCard; 
+
+          for (let i=1;i<6;i++) {
+              prodCard = new ProductCards( {
+              _id: new mongoose.Types.ObjectId(),
+              productType: {
+                type: '619ea5069365ba31cc27cfe0'
+                
+                },  //код типа продукта из справочника
+              productName: 'String', //название продукта
+              productProp: 'String',  // свойства продукта
+              pic: 'String',  //ссылка на файл изображения
+              productCost: 10, //цена
+              productEnable: 0,
+              productPromo: 0
+
+            });
+
+            prodCard.save()
+              .then(function(doc){
+                  console.log("Сохранен объект", doc);
+              
+              })
+              .catch(function (err){
+                  console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
+              
+              });
+          }
+        }
+
+
+        ProductCards.find({ productName: /кофе/i  }).limit(10)
+          .exec( function (err, small) {
             if (err){
-                console.log(err)
-            }else{
-
-                docCount = count;
-                console.log("Estimated Count docCount= :", docCount);
-
-if (docCount===0) {
-  console.log('fff');
-  
-  let prodType = new productType( {
-    _id: new mongoose.Types.ObjectId(),
-    productType: '0000000001',
-    productName: 'Кофе',
-    productTypeEnable: 0
-
-  });
-
-  prodType.save()
-.then(function(doc){
-    console.log("Сохранен объект", doc);
-    
-})
-.catch(function (err){
-    console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
-    
-});
-
-}
-
-
- /*                
-                Book.find({
-                  title: /mvc/i
-              }).sort('-created')
-              .limit(5)
-              .exec(function(err, books) {
-                  if (err) throw err;
-                   
-                  console.log(books);
-              }); */
-//.create
-/*                     
-                      _id: new mongoose.Types.ObjectId(),
-                      coffeeName: `Какой-то кофе № ${docCount}`,
-                      coffeeRegion: new mongoose.Types.ObjectId(),
-                      detail: `Много много интересного`,
-                      pic: "Картинка",
-                      created:   new Date()
-   */
-
-                  ProductCards.find({
-                    productName: /кофе/i
-                  }).limit(10)
-                  .exec( function (err, small) {
-                      if (err){
-                          console.log('Erroo = ',err);
-                          return err;}
-                      else{  
-    
-                       
-                        res.status(200).send(small); //json
-                        console.log("Данные отправленны",small);
-                        //ProductCards.collection.drop();
-
-                      }  
-                    });
+                console.log('Erroo = ',err);
+                return err;}
+            else{ 
+              res.status(200).send(small); //json
+              console.log("Данные отправленны",small);
+              //ProductCards.collection.drop();
+            }  
+          });
               
           
-            }
-          });
+      }
+    //});
        
   
   
@@ -319,8 +310,104 @@ if (docCount===0) {
   
     };
   
+ 
+
+    async function get2minus(collect, res){
 
 
+ 
+      let docCount;
+          
+             await ProductCards.find({}).exec(function(err, Product_Cards) {
+             console.log(Product_Cards);
+                  Product_Cards.estimatedDocumentCount(function (err, count) {
+              
+                  if (err){
+                      console.log(err)
+                  }else{
+      
+                      docCount = count;
+                      console.log("Estimated Count docCount= :", docCount);
+      
+      if (docCount===0) {
+          
+        let prodType = new productType( {
+          _id: new mongoose.Types.ObjectId(),
+          productType: '0000000001',
+          productName: 'Кофе',
+          productTypeEnable: 0
+      
+        });
+      
+        prodType.save()
+      .then(function(doc){
+          console.log("Сохранен объект", doc);
+          
+      })
+      .catch(function (err){
+          console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
+          
+      });
+      
+      }
+      
+      
+       /*                
+                      Book.find({
+                        title: /mvc/i
+                    }).sort('-created')
+                    .limit(5)
+                    .exec(function(err, books) {
+                        if (err) throw err;
+                         
+                        console.log(books);
+                    }); */
+      //.create
+      /*                     
+                            _id: new mongoose.Types.ObjectId(),
+                            coffeeName: `Какой-то кофе № ${docCount}`,
+                            coffeeRegion: new mongoose.Types.ObjectId(),
+                            detail: `Много много интересного`,
+                            pic: "Картинка",
+                            created:   new Date()
+         */
+      
+                        ProductCards.find({
+                          productName: /кофе/i
+                        }).limit(10)
+                        .exec( function (err, small) {
+                            if (err){
+                                console.log('Erroo = ',err);
+                                return err;}
+                            else{  
+          
+                             
+                              res.status(200).send(small); //json
+                              console.log("Данные отправленны",small);
+                              //ProductCards.collection.drop();
+      
+                            }  
+                          });
+                    
+                
+                  }
+                });
+             
+        
+        
+      
+        
+        
+         
+        
+                //console.log(ProductCardss);
+            });
+        
+        
+        
+        
+          };
+        
 
 
 
