@@ -230,6 +230,16 @@ app.listen(4000);
 async function get2plus(collect, res){
 
 let docCount=0;
+
+const prodTypes = await productType.find();
+console.log('prodTypes===',prodTypes[0]._id);
+
+
+/* prodTypes.forEach(item => {
+  console.log('prodTypes===',item._id);
+  
+}); */
+
     
 await ProductCards.find()
   .exec(function(err, Product_Cards) {
@@ -256,7 +266,7 @@ var id ;
 
 
 
-          for (let i=1;i<6;i++) {
+          for (let i=1;i<3;i++) {
 
  //           id = ObjectId('619ea5069365ba31cc27cfe0');            
 /* id = mongoose.Types.ObjectId('619ea5069365ba31cc27cfe0');  */         
@@ -264,10 +274,7 @@ var id ;
 
               prodCard = new ProductCards( {
               _id: new mongoose.Types.ObjectId(),
-              /* productType: {
-                type: id
-                
-                }, */  //код типа продукта из справочника
+              productType: prodTypes[i-1]._id, //код типа продукта из справочника
               productName: 'Продукт № '+i, //название продукта
               productProp: 'String'+i,  // свойства продукта
               pic: 'Pic'+i,  //ссылка на файл изображения
