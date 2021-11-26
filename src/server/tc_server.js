@@ -231,12 +231,14 @@ async function get2plus(collect, res){
 
 let docCount=0;
     
-await ProductCards.find({})
+await ProductCards.find()
   .exec(function(err, Product_Cards) {
 
-console.log('ProductCards==',Product_Cards);
-console.log('ProductCards.length==',Product_Cards.length  );
-console.log('ProductCards.typeof==',Product_Cards.countDocuments );
+/* console.log('Product_Cards==',Product_Cards);
+console.log('Product_Cards.length==',Product_Cards.length  );
+
+console.log('ProductCards.countDocuments==',ProductCards.countDocuments() );
+console.log('Product_Cards.countDocuments==',Product_Cards.proto ); */
 //
     //ProductCards.estimatedDocumentCount(function (err, count) {
 
@@ -248,21 +250,30 @@ console.log('ProductCards.typeof==',Product_Cards.countDocuments );
         console.log("Estimated Count docCount= :", docCount); 
 
         if (docCount===0) {
-          let prodCard; 
+          let prodCard;
+          
+var id ;          
+
+
 
           for (let i=1;i<6;i++) {
+
+ //           id = ObjectId('619ea5069365ba31cc27cfe0');            
+/* id = mongoose.Types.ObjectId('619ea5069365ba31cc27cfe0');  */         
+// console.log('mongoose.Types.ObjectId(  ===  ',id);
+
               prodCard = new ProductCards( {
               _id: new mongoose.Types.ObjectId(),
-              productType: {
-                type: '619ea5069365ba31cc27cfe0'
+              /* productType: {
+                type: id
                 
-                },  //код типа продукта из справочника
-              productName: 'String', //название продукта
-              productProp: 'String',  // свойства продукта
-              pic: 'String',  //ссылка на файл изображения
-              productCost: 10, //цена
-              productEnable: 0,
-              productPromo: 0
+                }, */  //код типа продукта из справочника
+              productName: 'Продукт № '+i, //название продукта
+              productProp: 'String'+i,  // свойства продукта
+              pic: 'Pic'+i,  //ссылка на файл изображения
+              productCost: 10*i, //цена
+              productEnable: 1,
+              productPromo: 1
 
             });
 
