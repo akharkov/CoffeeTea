@@ -21,16 +21,14 @@ const request2 = require('request');
 const app = express();
 
 //include("/js/block_mongo.js");
-
-
-
 const { MongoClient } = require("mongodb");
-
-
 const mongoose = require('mongoose');
 const { errorMonitor } = require('events');
 const { Console } = require('console');
 const { Schema } = mongoose;
+
+
+
 
 const dataBaseName = 'coffee_and_tea';
 
@@ -48,7 +46,6 @@ const uri =  `mongodb+srv://${username}:${password}@${clusterUrl}/?authMechanism
 
 
 // mongoose Schemas Documents
-
 
 const schemaProductType = new mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
@@ -97,10 +94,32 @@ const schemaProductCard = new mongoose.Schema({
 
 );
 
+const schemaNews = new mongoose.Schema({
+  _id: mongoose.Schema.Types.ObjectId,
+  newsTitle: String,  //код типа продукта
+  newsBody: String,
+  newsEnable: Boolean,
+  newsDateBegin: Date,
+  newsDateEnd: Date,
+  newsCreated: {
+      type: Date,
+      default: Date.now}
+  },
+  {
+    writeConcern: {
+      w: 'majority',
+      j: true,
+      wtimeout: 1000
+    }
+  }  // этот объект исключил ошибку MongoWriteConcernError: No write concern mode named 'majority/' found in replica set configuration at MessageStream.messageHandler
 
+
+);
 
 const productType = mongoose.model('productType', schemaProductType); 
 const ProductCards = mongoose.model('productCards', schemaProductCard);
+const News = mongoose.model('News', schemaNews);
+
 /* 
 Первый параметр в методе mongoose.model указывает на название модели. 
 Mongoose затем будет автоматически искать в базе данных коллекцию, 
@@ -141,10 +160,6 @@ async function run() {
         console.log('Successfully connected to mongoose');
 
      });
-
-
-
-
     console.log("Connected successfully to server");
     
   } finally {
@@ -179,42 +194,47 @@ const urlencodedParser = bodyParser.urlencoded({
 
 
 
-app.get("/--", function(req, res)  {
-
-    /* mongoose.db('CoffeeTea').collection('Coffee').find({}).toArray(function(err, tasks){
-      if(err) return console.log(err);
-      // res.send({ tasks });
-      res.status(200).json(tasks);
-      console.log("Данные отправленны",tasks);
-    }) */
-
-  get2minus(ProductCards, res);
-
-
-});
-
-
-app.get("/----", function(req, res)  {
-  get2plus(ProductCards, res);
-});
- 
 
 
 
 
 
 app.get('/', function (request, response) {
-  //response.send('Главная страница')
-
   
-
- 
-
   response.sendFile( 'index.html')
   //response.send(mongoose.db);
   //response.status(200).stringify(mongoose.db);
 })
 
+
+
+
+
+
+
+app.get("/--", function(req, res)  {
+
+  /* mongoose.db('CoffeeTea').collection('Coffee').find({}).toArray(function(err, tasks){
+    if(err) return console.log(err);
+    // res.send({ tasks });
+    res.status(200).json(tasks);
+    console.log("Данные отправленны",tasks);
+  }) */
+
+get2minus(ProductCards, res);
+
+
+});
+
+app.get("/----", function(req, res)  {
+get2plus(ProductCards, res);
+});
+
+
+app.get("/addnews", function(req, res)  {
+  get2news(News, res);
+  });
+  
 
 
 
@@ -226,7 +246,7 @@ app.listen(4000);
 
 
 
-
+// -- начало -- эта функция просто создает N карточек продуктов.....  техническая функция вне проекта
 async function get2plus(collect, res){
 
 let docCount=0;
@@ -312,13 +332,6 @@ var id ;
           
       }
     //});
-       
-  
-  
-
-  
-  
-   
   
           //console.log(ProductCardss);
       });
@@ -327,15 +340,11 @@ var id ;
   
   
     };
-  
+// -- конец -- эта функция просто создает N карточек продуктов.....  техническая функция вне проекта  
  
-
+// -- начало -- эта функция просто создает N карточек типов продуктов.....  техническая функция вне проекта
     async function get2minus(collect, res){
-
-
- 
       let docCount;
-          
              await ProductCards.find({}).exec(function(err, Product_Cards) {
              console.log(Product_Cards);
                   Product_Cards.estimatedDocumentCount(function (err, count) {
@@ -410,22 +419,74 @@ var id ;
                 
                   }
                 });
-             
-        
-        
-      
-        
-        
-         
-        
                 //console.log(ProductCardss);
             });
-        
-        
-        
-        
           };
-        
+// -- конец -- эта функция просто создает N карточек типов продуктов.....  техническая функция вне проекта        
 
 
+// -- начало -- эта функция просто создает N карточек новостей.....  техническая функция вне проекта
+async function get2news(collect, res){
+  let docCount;
+         await News.find({}).exec(function(err, News_Cards) {
+         console.log(collect);
+         collect.estimatedDocumentCount(function (err, count) {
+          
+              if (err){
+                  console.log(err)
+              }else{
+  
+                  docCount = count;
+                  console.log("Estimated Count docCount News= :", docCount);
+  
+  if (docCount===0) {
+      
+    let newsCard = new collect( {
+      _id: new mongoose.Types.ObjectId(),
+      newsTitle: "Новость № ",  //код типа продукта
+      newsBody: "Много интересного",
+      newsEnable: 1
+      /* ,
+      newsDateBegin: Date,
+      newsDateEnd: Date */
+  
+    });
+  
+    newsCard.save()
+  .then(function(doc){
+      console.log("Сохранен объект", doc);
+      
+  })
+  .catch(function (err){
+      console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
+      
+  });
+  
+  }
+  
 
+
+              News.find({
+                newsTitle: /кофе/i
+              }).limit(10)
+              .exec( function (err, small) {
+                  if (err){
+                      console.log('Erroo = ',err);
+                      return err;}
+                  else{  
+
+                    
+                    res.status(200).send(small); //json
+                    console.log("Данные отправленны",small);
+                    //ProductCards.collection.drop();
+
+                  }  
+                });
+                
+            
+              }
+            });
+            //console.log(ProductCardss);
+        });
+      };
+// -- конец -- эта функция просто создает N карточек типов продуктов.....  техническая функция вне проекта        
