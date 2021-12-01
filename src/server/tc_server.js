@@ -440,29 +440,29 @@ async function get2news(collect, res){
                   console.log("Estimated Count docCount News= :", docCount);
   
   if (docCount===0) {
-      
-    let newsCard = new collect( {
+
+    let newsCard;
+    for (i=1;i<11;i++) {
+      newsCard = new collect( {
       _id: new mongoose.Types.ObjectId(),
-      newsTitle: "Новость № ",  //код типа продукта
-      newsBody: "Много интересного",
-      newsEnable: 1
-      /* ,
-      newsDateBegin: Date,
-      newsDateEnd: Date */
+      newsTitle: "Новость № "+i,  //код типа продукта
+      newsBody: i+") Много интересного",
+      newsEnable: 1,      
+      newsDateBegin: new Date()
+      // newsDateEnd: Date 
   
-    });
-  
+      });  
     newsCard.save()
-  .then(function(doc){
+    .then(function(doc){
       console.log("Сохранен объект", doc);
-      
-  })
-  .catch(function (err){
-      console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
-      
-  });
-  
+        
+    })
+    .catch(function (err){
+        console.log('Ошибка!!!!!!!!!!!!!!!!!!!!!!!!!!   ',err);
+        
+    });
   }
+}
   
 
 

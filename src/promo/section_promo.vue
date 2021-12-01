@@ -18,19 +18,12 @@
             </div>
        
             <div id="newsFeed" class="col col-2 d-none d-lg-block news_feed" style="max-height: 90%; text-overflow: clip;" >
-                <div v-for="newsItem in news" :key="newsItem.id " style="max-height: 30%; overflow:hidden; text-overflow: ellipsis;"> 
-                    
-                    
+                <!-- <div v-for="newsItem in news" :key="newsItem.id " style="max-height: 30%; overflow:hidden; text-overflow: ellipsis;"> 
                     <h4 @click="divNewsClick(newsItem.news_note)">{{newsItem.news_title}}</h4> 
-                    
-   <p></p>
-                        <p>{{newsItem.news_note }}</p>
-                         
-                         
-                        
-                        
-                    
-                </div> 
+                    <p></p>
+                    <p>{{newsItem.news_note }}</p>
+                </div>  -->
+                <news-card>  </news-card> 
                 
             </div>
 
@@ -42,41 +35,47 @@
 </template>
 
 <script>
-export default {
-    data: function(){
-        return {
-            mess:"Здесь будет лента новостей!!!S",
-        news:[
-            {
-                news_id: 1,
-                news_date: "",
-                news_title:"Первая новость",
-                news_note:"Еще недавно считалось, что напиток не стоит пить людям с сердечно-сосудистыми заболеваниями. Но эксперименты доказали, что кофеин не вызывает развитие гипертонии. У людей с нормальным давлением оно кратковременно повышается, но вскоре приходит в норму. При этом никаких рисков для сердечно-сосудистой системы нет.",
-                news_expired:false
-            },
-            {
-                news_id: 2,
-                news_date: "",
-                news_title:"Вторая новость",
-                news_note:"Кофеин повышает уровень дофамина в мозге, который заставляет нас чувствовать себя бодрее и веселее. Употребление кофе в умеренных количествах положительно влияет на центральную нервную систему: улучшает настроение, повышает физическую и умственную активность",
-                news_expired:false
+
+    import news_card from "./news_card.vue";
+    export default {
+  components: { news_card },
+        data: function(){
+            return {
+                mess:"Здесь будет лента новостей!!!S",
+                news:[
+                    {
+                        news_id: 1,
+                        news_date: "",
+                        news_title:"Первая новость",
+                        news_note:"Еще недавно считалось, что напиток не стоит пить людям с сердечно-сосудистыми заболеваниями. Но эксперименты доказали, что кофеин не вызывает развитие гипертонии. У людей с нормальным давлением оно кратковременно повышается, но вскоре приходит в норму. При этом никаких рисков для сердечно-сосудистой системы нет.",
+                        news_expired:false
+                    },
+                    {
+                        news_id: 2,
+                        news_date: "",
+                        news_title:"Вторая новость",
+                        news_note:"Кофеин повышает уровень дофамина в мозге, который заставляет нас чувствовать себя бодрее и веселее. Употребление кофе в умеренных количествах положительно влияет на центральную нервную систему: улучшает настроение, повышает физическую и умственную активность",
+                        news_expired:false
+                    }
+                
+                ]
+
+
             }
-             
-        ]
+        },
+        methods:{
+            divNewsClick: function(newsNote) {
+                alert(newsNote );
+            }
+
+        },
+        created: {
 
 
         }
 
-    },
-    methods:{
-         divNewsClick: function(newsNote) {
-              alert(newsNote );
-          }
-
+        
     }
-
-    
-}
 </script>
 
 <style scoped>
