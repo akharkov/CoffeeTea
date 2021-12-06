@@ -206,6 +206,18 @@ app.get('/', function (request, response) {
   //response.status(200).stringify(mongoose.db);
 })
 
+app.get('/news999', function (request, response) {
+  
+  response.send( {"testResp":"Тестовый ответ","body":'Много новостей'});
+  
+  console.log("Вернул много новостей");
+  //response.send(mongoose.db);
+  //response.status(200).stringify(mongoose.db);
+})
+
+
+
+
 
 
 

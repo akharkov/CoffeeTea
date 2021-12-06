@@ -1,5 +1,8 @@
 <template>
+    <div class="newsCard">
 
+        
+    </div>
     
  
 </template>
@@ -14,20 +17,24 @@ export default {
             cardStyle:{},
             clickCount:0,
             cardData:{
+
+
+
                 cardId:"",
-                productType:"",
-                productId:"",
-                productTitle:"", 
-                productPic:"",            
-                productProp:"Ну очень вкусный "
+                newsTitle:"",
+                newsBody:"Ну очень интересно "
                     +"Lorem ipsum dolor sit,"
                     +"amet consectetur adipisicing elit."
                     +"Corrupti nemo eaque totam eos,"
                     +"dignissimos sint molestias ullam a"
                     +"consequatur officiis illo nisi quae eum",
-                productCost:0.00,
-                productEnable:true,
-                productPromo:false 
+                newsEnable:1, 
+                newsDateBegin:Date.now, 
+                newsDateEnd:Date.now,
+                newsCreated:Date.now
+                
+                
+
             }
 
         }
@@ -65,7 +72,15 @@ export default {
 </script>
 
 <style scoped>
+    .newsCard{
+        height: 20%;
+        box-shadow: gray;
+        background-color: rgba(240, 247, 240, 0.3);
 
+        border-radius: 25px;
+        margin: 1%;
+
+    }
 
         
 

@@ -2,28 +2,18 @@
 
 <template>
 <section  class='container goods '>
-        <div  class="goodsTitle ">
+    <div  class="goodsTitle ">
 
 
-        </div>
+    </div>
 
-   
-        
-
-        <div class="row justify-content-around goodsBody">
-            <product_card v-for="Item in products" :key="Item.id" :Item="Item" > 
+    <div class="row justify-content-around goodsBody">
+        <product_card v-for="Item in products" :key="Item.id" :Item="Item" > 
 
 
-            </product_card>
-                    
-
-        </div>
-
-
-
-
-        
-    </section>    
+        </product_card>
+    </div>
+</section>    
     
 </template>
 

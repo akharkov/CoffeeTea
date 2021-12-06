@@ -23,7 +23,7 @@
                     <p></p>
                     <p>{{newsItem.news_note }}</p>
                 </div>  -->
-                <news-card>  </news-card> 
+                <news_card>  </news_card> 
                 
             </div>
 
@@ -37,10 +37,12 @@
 <script>
 
     import news_card from "./news_card.vue";
+
+
     export default {
-  components: { news_card },
-        data: function(){
-            return {
+        components: { news_card },
+            data: function(){
+                return {
                 mess:"Здесь будет лента новостей!!!S",
                 news:[
                     {
@@ -69,7 +71,41 @@
             }
 
         },
-        created: {
+        created:function() {
+
+            fetch("news999")
+            .then(function (response) {
+                if (response.status !== 200) {
+                return Promise.reject(new Error(response.statusText))
+                }
+                return Promise.resolve(response)
+            })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (data) {
+                console.log('data', data,' получили ответочку')
+            })
+            .catch(function (error) {
+                console.log('error', error)
+            })
+
+
+
+
+
+
+                
+                fetch("news999")
+                .then(function(resp) {
+alert("Из новостей сервер вернул "+resp.text());
+                })
+                .catch(function() {
+                    console.log("Что-то пошло не так при чтении новостей "+err);
+                });
+
+ 
+           
 
 
         }
