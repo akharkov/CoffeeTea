@@ -72,7 +72,8 @@
 
         },
         created:function() {
-
+console.log('news-0 ', this.news,' на старте');
+let tmpNews = this.news;
             fetch("news999")
             .then(function (response) {
                 if (response.status !== 200) {
@@ -88,15 +89,15 @@
 
                 //this.news=data;
 console.log('data1', newsList,' получили ответочку')
-console.log('data2', news,' получили ответочку')
-
-                
+//console.log('data2', this.news,' получили ответочку')
+tmpNews=newsList;
+console.log('data3', tmpNews,' получили tmp')                
             })
             .catch(function (error) {
                 console.log('error', error)
             })
-
-
+this.news=tmpNews;
+console.log('news-х ', this.news,' в конце');
 
 
  
