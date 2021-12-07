@@ -207,10 +207,25 @@ app.get('/', function (request, response) {
 })
 
 app.get('/news999', function (request, response) {
+  //News.find({},function(err, docs){
+  News.find({}).sort("newsCreated").exec(function(err, docs){
+        
+    if(err){
+
+
+       return console.log(err);
+    }   
+     
+    console.log(docs);
+    response.send(docs); 
+    console.log("Вернул много новостей");
+})
+
+
   
-  response.send( {"testResp":"Тестовый ответ","body":'Много новостей'});
+  //response.send( {"testResp":"Тестовый ответ","body":'Много новостей'});
   
-  console.log("Вернул много новостей");
+  //console.log("Вернул много новостей");
   //response.send(mongoose.db);
   //response.status(200).stringify(mongoose.db);
 })

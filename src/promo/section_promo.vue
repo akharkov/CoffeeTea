@@ -83,8 +83,19 @@
             .then(function (response) {
                 return response.json()
             })
-            .then(function (data) {
-                console.log('data', data,' получили ответочку')
+            .then(function (newsList) {
+
+
+                //this.news=data;
+console.log('data1', newsList,' получили ответочку')
+console.log('data2', news,' получили ответочку')
+/* 
+
+this.news={"www":{"aaa":"111","bbb":"222"},
+"uuu":{"aaa1":"1111","bbb1":"1222"}};
+
+console.log('data2', this.news,' получили ответочку') */
+                
             })
             .catch(function (error) {
                 console.log('error', error)
@@ -92,17 +103,6 @@
 
 
 
-
-
-
-                
-                fetch("news999")
-                .then(function(resp) {
-alert("Из новостей сервер вернул "+resp.text());
-                })
-                .catch(function() {
-                    console.log("Что-то пошло не так при чтении новостей "+err);
-                });
 
  
            
