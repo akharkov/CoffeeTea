@@ -89,12 +89,7 @@
                 //this.news=data;
 console.log('data1', newsList,' получили ответочку')
 console.log('data2', news,' получили ответочку')
-/* 
 
-this.news={"www":{"aaa":"111","bbb":"222"},
-"uuu":{"aaa1":"1111","bbb1":"1222"}};
-
-console.log('data2', this.news,' получили ответочку') */
                 
             })
             .catch(function (error) {
