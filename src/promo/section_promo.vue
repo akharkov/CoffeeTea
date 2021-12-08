@@ -72,9 +72,10 @@
 
         },
         created:function() {
+
 console.log('news-0 ', this.news,' на старте');
 let tmpNews = this.news;
-            fetch("news999")
+             fetch("news999")
             .then(function (response) {
                 if (response.status !== 200) {
                 return Promise.reject(new Error(response.statusText))
@@ -100,7 +101,7 @@ this.news=tmpNews;
 console.log('news-х ', this.news,' в конце');
 
 
- 
+
            
 
 
@@ -108,6 +109,43 @@ console.log('news-х ', this.news,' в конце');
 
         
     }
+
+
+/* 
+
+function readNewsList(newsUrl, newsThis) {
+
+console.log('news-0 ', newsThis,' на старте');
+let tmpNews = newsThis;
+let tmp;
+        fetch(newsUrl)
+            .then(function (response) {
+                if (response.status !== 200) {
+                return Promise.reject(new Error(response.statusText))
+                }
+                return Promise.resolve(response)
+            })
+            .then(function (response) {
+                return response.json()
+            })
+            .then(function (newsList) {
+
+
+                //this.news=data;
+console.log('data1', newsList,' получили ответочку')
+//console.log('data2', this.news,' получили ответочку')
+tmpNews=newsList;
+console.log('data3', tmpNews,' получили tmp')                
+            })
+            .catch(function (error) {
+                console.log('error', error)
+            })
+newsThis=tmpNews;
+console.log('news-х ', newsThis,' в конце');
+return newsThis;
+}
+ */
+
 </script>
 
 <style scoped>
