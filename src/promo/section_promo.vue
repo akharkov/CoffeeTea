@@ -23,7 +23,7 @@
                     <p></p>
                     <p>{{newsItem.news_note }}</p>
                 </div>  -->
-                <news_card>  </news_card> 
+                <news_card> {{news}} </news_card> 
                 
             </div>
 
@@ -68,6 +68,33 @@
         methods:{
             divNewsClick: function(newsNote) {
                 alert(newsNote );
+            },
+            readNews: function(){
+                console.log("readNews==========================================");
+                fetch("news999")
+                .then(function (response) {
+                    if (response.status !== 200) {
+                    return Promise.reject(new Error(response.statusText))
+                    }
+                    return Promise.resolve(response)
+                })
+                .then(function (response) {
+                    return response.json()
+                })
+                .then(function (newsList) {
+
+
+                    //this.news=data;
+                    console.log('readNews', newsList,' получили ответочку')
+                    //console.log('data2', this.news,' получили ответочку')
+
+                    return newsList;              
+                })
+                .catch(function (error) {
+                    console.log('error', error)
+                })
+
+
             }
 
         },
@@ -99,6 +126,9 @@
             })
             this.news=tmpNews;
             console.log('news-х ', this.news,' в конце');
+
+            this.news=this.readNews();
+console.log('this.readNews() ', this.readNews(),' в конце');
 
  
 
