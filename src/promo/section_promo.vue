@@ -18,12 +18,14 @@
             </div>
        
             <div id="newsFeed" class="col col-2 d-none d-lg-block news_feed" style="max-height: 90%; text-overflow: clip;" >
-                <!-- <div v-for="newsItem in news" :key="newsItem.id " style="max-height: 30%; overflow:hidden; text-overflow: ellipsis;"> 
-                    <h4 @click="divNewsClick(newsItem.news_note)">{{newsItem.news_title}}</h4> 
+                 <div v-for="newsItem in news" :key="newsItem.id " style="max-height: 30%; overflow:hidden; text-overflow: ellipsis;"> 
+                    <!-- <h4 @click="divNewsClick(newsItem.news_note)">{{newsItem.news_title}}</h4> 
                     <p></p>
-                    <p>{{newsItem.news_note }}</p>
-                </div>  -->
-                <news_card> {{news}} </news_card> 
+                    <p>{{newsItem.news_note }}</p> -->
+
+                     <news_card  >  {{newsItem.news_title}}</news_card>  
+                </div>  
+                <!-- <news_card  >  </news_card>  -->
                 
             </div>
 
@@ -71,7 +73,7 @@
             },
             readNews: function(){
                 console.log("readNews==========================================");
-                fetch("news999")
+                return fetch("news999")
                 .then(function (response) {
                     if (response.status !== 200) {
                     return Promise.reject(new Error(response.statusText))
@@ -80,16 +82,17 @@
                 })
                 .then(function (response) {
                     return response.json()
-                })
+                })/* 
                 .then(function (newsList) {
 
 
                     //this.news=data;
-                    console.log('readNews', newsList,' получили ответочку')
+                    //console.log('readNews', newsList,' получили ответочку')
                     //console.log('data2', this.news,' получили ответочку')
 
                     return newsList;              
-                })
+                }) */
+                 
                 .catch(function (error) {
                     console.log('error', error)
                 })
@@ -100,7 +103,7 @@
         },
         created:function() {
  
-            console.log('news-0 ', this.news,' на старте');
+/*             console.log('news-0 ', this.news,' на старте');
             let tmpNews = this.news;
              fetch("news999")
             .then(function (response) {
@@ -125,9 +128,19 @@
                 console.log('error', error)
             })
             this.news=tmpNews;
-            console.log('news-х ', this.news,' в конце');
+            console.log('news-х ', this.news,' в конце'); */
 
-            this.news=this.readNews();
+            /* this.news=this.readNews(); */
+            this.readNews()
+            .then(function(newsList){
+                newsList.forEach(itemList => {
+                    console.log("itemList==", itemList);
+                });
+
+            })
+
+
+
 console.log('this.readNews() ', this.readNews(),' в конце');
 
  
